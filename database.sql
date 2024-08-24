@@ -1,0 +1,21 @@
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    link_name VARCHAR(255) NOT NULL, 
+    slug VARCHAR(255) UNIQUE NOT NULL 
+);
+
+CREATE TABLE download_links (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    post_id INT,
+    provider VARCHAR(255) NOT NULL,
+    download_url VARCHAR(255) NOT NULL,
+    color VARCHAR(50) NOT NULL,
+    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
+);
